@@ -3,7 +3,7 @@ import rospy
 from std_msgs.msg import UInt16
 
 def write_freq(hz=0):
-    bfile = "/drv/rtbuzzer0"
+    bfile = "/dev/rtbuzzer0"
     try:
 	with open(bfile,"w") as f:
 	    f.write(str(hz)+"\n")
@@ -11,7 +11,7 @@ def write_freq(hz=0):
 	rospy.logerr("can't write to " + bfile)
 
 def recv_buzzer(data):
-    write_fleq(data.data)
+    write_freq(data.data)
 
 if __name__ == '__main__':
     rospy.init_node('buzzer')
